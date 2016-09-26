@@ -3,11 +3,11 @@
 describe('Thermostat', function(){
 
 	var thermostat;
-	
+
 	beforeEach(function(){
 		thermostat = new Thermostat();
 	});
-	
+
 	it('starts at 20 degrees', function(){
 		expect(thermostat.getCurrentTemperature()).toEqual(20);
 	});
@@ -16,7 +16,7 @@ describe('Thermostat', function(){
 		thermostat.upButton();
 		expect(thermostat.getCurrentTemperature()).toEqual(21);
 	});
-	
+
 	it('allows decrease of temperature using down button', function(){
 		thermostat.downButton();
 		expect(thermostat.getCurrentTemperature()).toEqual(19);
@@ -29,7 +29,7 @@ describe('Thermostat', function(){
 	it('it will not reduce temperature under 10º', function() {
 		for (var i=0; i<11; i++) {
 			thermostat.downButton();};
-			expect(thermostat.getCurrentTemperature()).toEqual(10);	
+			expect(thermostat.getCurrentTemperature()).toEqual(10);
 	});
 
 	it('has power saving mode on by default', function(){
@@ -52,23 +52,22 @@ describe('Thermostat', function(){
 
 	describe('when power saving mode is on', function() {
 	it('gives a maxi temp of 25º if power saving mode is on', function(){
+    thermostat.switchPowerSavingModeOn();
 		for (var i=0; i<6; i++){
-		thermostat.upButton();}
+		thermostat.upButton();
+    console.log(thermostat.temperature);
+  }
 		expect(thermostat.getCurrentTemperature()).toEqual(25);
 		});
 	});
-	
+
 
 describe('when power saving mode is off', function() {
 	it('gives a maxi temp of 32º if power saving mode is off', function(){
-		thermostat.switchPowerSavingModeOff
+		thermostat.switchPowerSavingModeOff()
 		for (var i=0; i<13; i++){
 		thermostat.upButton();}
 		expect(thermostat.getCurrentTemperature()).toEqual(32);
 		});
 	});
 });
-
-	
-
-

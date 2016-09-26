@@ -1,11 +1,14 @@
 'use strict';
 
+
+
 function Thermostat () { //creating a class
+  this.MAX_LIMIT_PSM_ON = 25;
+  this.MAX_LIMIT_PSM_OFF = 32;
+  this.MINIMUM_TEMP = 10;
 	this.temperature = 20; //adding a property or the attribute of the class
-	this.MINIMUM_TEMP = 10;
 	this.powerSavingMode = true
-	this.MAX_LIMIT_PSM_ON = 25;
-	this.MAX_LIMIT_PSM_OFF = 32;
+  this.maxTemp = this.MAX_LIMIT_PSM_OFF;
 }
 
 Thermostat.prototype.getCurrentTemperature = function() { //ading a methd to a class
@@ -13,13 +16,13 @@ Thermostat.prototype.getCurrentTemperature = function() { //ading a methd to a c
 };
 
 Thermostat.prototype.upButton = function() {
- 	 
- 	 if(this.temperature > this.MaxTemp){
- 	 	return this.MaxTemp;}
 
- 	 else if(this.temperature < this.MaxTem p){
- 	 	this.temperature +=1;}
-	 
+ 	 if(this.temperature >= this.maxTemp){
+ 	 	return this.maxTemp;}
+
+ 	 else if(this.temperature < this.maxTemp){
+ 	 	this.temperature += 1;}
+
 };
 
 Thermostat.prototype.downButton = function() {
@@ -32,10 +35,12 @@ Thermostat.prototype.isPowerSavingModeOn = function() {
 };
 
 Thermostat.prototype.switchPowerSavingModeOff = function() {
+  this.maxTemp = this.MAX_LIMIT_PSM_OFF;
 	return this.powerSavingMode = false;
 };
 
 Thermostat.prototype.switchPowerSavingModeOn = function() {
+  this.maxTemp = this.MAX_LIMIT_PSM_ON;
 	return this.powerSavingMode = true;
 };
 
